@@ -1,5 +1,6 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+// Navbar.jsx
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
@@ -11,10 +12,11 @@ const Navbar = () => {
         <li><Link to="/about">About</Link></li>
         <li><Link to="/help">Help</Link></li>
         <li><Link to="/login">Login</Link></li>
-        <li><Link to="/signup">Sign Up</Link></li>
+        <li><Link to="/signup">Signup</Link></li>
+        <li><Link to="/pomodoro">Pomodoro</Link></li>
       </ul>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
