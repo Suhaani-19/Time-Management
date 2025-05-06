@@ -1,6 +1,5 @@
 // src/app/dashboard/page.js
 'use client';
-
 import { useContext } from 'react';
 import { TaskContext } from '../../context/TaskContext' // Assuming you're using TaskContext
 
@@ -22,7 +21,6 @@ export default function Dashboard() {
           ))}
         </ul>
       </section>
-
       <section>
         <h2>Pomodoro Sessions</h2>
         <ul>
