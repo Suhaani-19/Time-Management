@@ -1,60 +1,51 @@
-"use client"
+// src/app/pomodoro/page.js (or wherever your pomodoro component is located)
+'use client';
 import { useState, useEffect } from 'react';
+import { useTasks } from '../../context/TaskContext'; // Adjust path if needed
 
 export default function Pomodoro() {
-  const [isActive, setIsActive] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(25 * 60);  // 25 minutes in seconds
-  const [isWork, setIsWork] = useState(true); // Track work or break phase
+  const [timeLeft, setTimeLeft] = useState(25 * 60); // 25 minutes
+  const [isRunning, setIsRunning] = useState(false);
+  const { addTask } = useTasks();
 
-  // Update the timer every second if it's active
   useEffect(() => {
-    let interval;
-    if (isActive) {
-      interval = setInterval(() => {
-        setTimeLeft((prevTime) => {
-          if (prevTime <= 0) {
-            setIsWork(!isWork);  // Toggle between work and break phases
-            return isWork ? 5 * 60 : 25 * 60;  // Reset timer to 25 mins (work) or 5 mins (break)
-          }
-          return prevTime - 1;
-        });
-      }, 1000);
-    } else if (!isActive && timeLeft !== 0) {
-      clearInterval(interval);
+    let timer;
+    if (isRunning && timeLeft > 0) {
+      timer = setInterval(() => setTimeLeft((t) => t - 1), 1000);
+    } else if (isRunning && timeLeft === 0) {
+      clearInterval(timer);
+      setIsRunning(false);
+      addTask({
+        id: Date.now(),
+        type: 'Pomodoro',
+        content: 'Completed Pomodoro session',
+        time: new Date().toLocaleString(),
+      });
     }
+    return () => clearInterval(timer);
+  }, [isRunning, timeLeft, addTask]);
 
-    return () => clearInterval(interval);  // Clean up interval on component unmount
-  }, [isActive, timeLeft, isWork]);
-
-  // Format seconds to mm:ss
-  const formatTime = (seconds) => {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
-  };
-
-  // Start/Stop the timer
   const toggleTimer = () => {
-    setIsActive(!isActive);
+    setIsRunning((prev) => !prev);
   };
 
-  // Reset the timer
   const resetTimer = () => {
-    setIsActive(false);
-    setTimeLeft(isWork ? 25 * 60 : 5 * 60);
+    setIsRunning(false);
+    setTimeLeft(25 * 60);
+  };
+
+  const formatTime = (sec) => {
+    const m = String(Math.floor(sec / 60)).padStart(2, '0');
+    const s = String(sec % 60).padStart(2, '0');
+    return `${m}:${s}`;
   };
 
   return (
-    <div>
+    <div style={{ padding: '1rem' }}>
       <h1>Pomodoro Timer</h1>
-      <p>{isWork ? 'Work Phase' : 'Break Phase'}</p>
-      <div>
-        <h2>{formatTime(timeLeft)}</h2>
-      </div>
-      <button onClick={toggleTimer}>
-        {isActive ? 'Pause' : 'Start'}
-      </button>
-      <button onClick={resetTimer}>Reset</button>
+      <h2>{formatTime(timeLeft)}</h2>
+      <button onClick={toggleTimer}>{isRunning ? 'Pause' : 'Start'}</button>
+      <button onClick={resetTimer} style={{ marginLeft: '1rem' }}>Reset</button>
     </div>
   );
 }
