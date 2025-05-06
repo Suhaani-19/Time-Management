@@ -1,7 +1,6 @@
-'use client';
+"use client"
 import { useState } from 'react';
 import { useTasks } from '../../context/TaskContext';
-
 export default function TaskLog() {
   const { tasks, addTask, editTask, deleteTask } = useTasks(); // Added deleteTask and editTask
   const [input, setInput] = useState('');
@@ -12,11 +11,9 @@ export default function TaskLog() {
     e.preventDefault();
     if (input.trim() && description.trim()) {
       if (editingId) {
-        // If editing, update the task
         editTask(editingId, input, description);
         setEditingId(null);
       } else {
-        // If not editing, add a new task
         addTask({ id: Date.now(), type: 'TaskLog', content: input, description, time: new Date().toLocaleString() });
       }
       setInput('');
@@ -51,7 +48,6 @@ export default function TaskLog() {
         />
         <button type="submit">{editingId ? 'Save' : 'Add'} Task</button>
       </form>
-
       <ul>
         {tasks.map((task) => (
           <li key={task.id}>

@@ -1,6 +1,6 @@
-import Navbar from './navbar';  // Navbar component
-import Footer from './footer';  // Footer component
-import { TaskProvider } from '../context/TaskContext';// Import the context provider
+import Navbar from './navbar'; 
+import Footer from './footer';  
+import { TaskProvider } from '../context/TaskContext';
 import '../styles/globals.css';
 
 export const metadata = {
@@ -14,7 +14,7 @@ export default function Layout({ children }) {
       <body>
         <TaskProvider>
           <Navbar />
-          <main>{children}</main> {/* Renders the content of each page */}
+          <main>{children}</main> 
           <Footer />
         </TaskProvider>
       </body>
