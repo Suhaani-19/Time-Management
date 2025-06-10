@@ -53,11 +53,22 @@ const deletePomodoro = (id) => {
 
 
   return (
-    <TaskContext.Provider value={{ tasks, pomodoros, addTask, addPomodoro, updatePomodoro, deletePomodoro }}>
+  <TaskContext.Provider
+    value={{
+      tasks,
+      pomodoros,
+      addTask,
+      editTask,
+      deleteTask,     // ← add this
+      addPomodoro,
+      updatePomodoro,
+      deletePomodoro, // ← add this
+    }}
+  >
+    {children}
+  </TaskContext.Provider>
+);
 
-      {children}
-    </TaskContext.Provider>
-  );
 };
 
 // Custom hook to use TaskContext

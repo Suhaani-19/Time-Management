@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from 'react';
 import { useTasks } from '../../context/TaskContext';
-import '../../app/styles/Pomodoro.css'; // Make sure this CSS file exists
+import '../../styles/Pomodoro.css'; // Make sure this CSS file exists
 
 export default function Pomodoro() {
   const [timeLeft, setTimeLeft] = useState(25 * 60);

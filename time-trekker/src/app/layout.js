@@ -1,7 +1,9 @@
+
 import '../styles/globals.css';
 import Navbar from './navbar';
 import Sidebar from './sidebar';
 import LogoBar from './logobar';
+import { TaskProvider } from '../context/TaskContext'; // ✅ Adjust path if needed
 
 export const metadata = {
   title: 'TimeTrekker',
@@ -12,16 +14,17 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <div className="layout-container">
-          <Sidebar />
-          <div className="main-content">
-            <LogoBar />
-            <Navbar />
-            <main>{children}</main>
+        <TaskProvider> {/* ✅ Wrap everything inside TaskProvider */}
+          <div className="layout-container">
+            <Sidebar />
+            <div className="main-content">
+              <LogoBar />
+              <Navbar />
+              <main>{children}</main>
+            </div>
           </div>
-        </div>
+        </TaskProvider>
       </body>
     </html>
   );
 }
-

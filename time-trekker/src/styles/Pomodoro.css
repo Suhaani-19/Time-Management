@@ -1,0 +1,26 @@
+.pomodoro-container {
+  text-align: center;
+  padding: 2rem;
+}
+
+.clock {
+  font-size: 4rem;
+  margin: 1rem auto;
+  background-color: #1b402f;
+  color: #fff;
+  width: 200px;
+  padding: 1rem;
+  border-radius: 50%;
+  border: 6px solid #4caf50;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.controls {
+  margin-bottom: 2rem;
+}
+
+.controls button {
+  margin: 0 10px;
+}
