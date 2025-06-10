@@ -1,38 +1,29 @@
-// src/app/pomodoro/page.js (or wherever your pomodoro component is located)
-'use client';
+"use client";
 import { useState, useEffect } from 'react';
-import { useTasks } from '../../context/TaskContext'; // Adjust path if needed
+import { useTasks } from '../../context/TaskContext';
+import '../../app/styles/Pomodoro.css'; // Make sure this CSS file exists
 
 export default function Pomodoro() {
-  const [timeLeft, setTimeLeft] = useState(25 * 60); // 25 minutes
+  const [timeLeft, setTimeLeft] = useState(25 * 60);
   const [isRunning, setIsRunning] = useState(false);
-  const { addTask } = useTasks();
+  const [editingId, setEditingId] = useState(null);
+  const [editText, setEditText] = useState('');
+  const { pomodoros, addPomodoro, updatePomodoro, deletePomodoro } = useTasks();
 
   useEffect(() => {
     let timer;
     if (isRunning && timeLeft > 0) {
-      timer = setInterval(() => setTimeLeft((t) => t - 1), 1000);
+      timer = setInterval(() => setTimeLeft(t => t - 1), 1000);
     } else if (isRunning && timeLeft === 0) {
-      clearInterval(timer);
       setIsRunning(false);
-      addTask({
+      addPomodoro({
         id: Date.now(),
-        type: 'Pomodoro',
         content: 'Completed Pomodoro session',
-        time: new Date().toLocaleString(),
+        time: new Date().toLocaleString()
       });
     }
     return () => clearInterval(timer);
-  }, [isRunning, timeLeft, addTask]);
-
-  const toggleTimer = () => {
-    setIsRunning((prev) => !prev);
-  };
-
-  const resetTimer = () => {
-    setIsRunning(false);
-    setTimeLeft(25 * 60);
-  };
+  }, [isRunning, timeLeft]);
 
   const formatTime = (sec) => {
     const m = String(Math.floor(sec / 60)).padStart(2, '0');
@@ -41,11 +32,47 @@ export default function Pomodoro() {
   };
 
   return (
-    <div style={{ padding: '1rem' }}>
+    <div className="pomodoro-container">
       <h1>Pomodoro Timer</h1>
-      <h2>{formatTime(timeLeft)}</h2>
-      <button onClick={toggleTimer}>{isRunning ? 'Pause' : 'Start'}</button>
-      <button onClick={resetTimer} style={{ marginLeft: '1rem' }}>Reset</button>
+      <div className="clock">{formatTime(timeLeft)}</div>
+      <div className="controls">
+        <button onClick={() => setIsRunning(prev => !prev)}>
+          {isRunning ? "Pause" : "Start"}
+        </button>
+        <button onClick={() => {
+          setIsRunning(false);
+          setTimeLeft(25 * 60);
+        }}>
+          Reset
+        </button>
+      </div>
+
+      <h2>Completed Pomodoros</h2>
+      <ul>
+        {pomodoros.map((p) => (
+          <li key={p.id}>
+            {editingId === p.id ? (
+              <>
+                <input value={editText} onChange={(e) => setEditText(e.target.value)} />
+                <button onClick={() => {
+                  updatePomodoro(p.id, editText);
+                  setEditingId(null);
+                }}>Save</button>
+              </>
+            ) : (
+              <>
+                <strong>{p.content}</strong>
+                <small> - {p.time}</small>
+                <button onClick={() => {
+                  setEditText(p.content);
+                  setEditingId(p.id);
+                }}>Edit</button>
+                <button onClick={() => deletePomodoro(p.id)}>Delete</button>
+              </>
+            )}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

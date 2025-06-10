@@ -40,10 +40,21 @@ export const TaskProvider = ({ children }) => {
 
   const addPomodoro = (pomodoro) => {
     setPomodoros([...pomodoros, pomodoro]);
-  };
+  }
+  const updatePomodoro = (id, updatedText) => {
+  setPomodoros(prev =>
+    prev.map(p => (p.id === id ? { ...p, content: updatedText } : p))
+  );
+};
+
+const deletePomodoro = (id) => {
+  setPomodoros(prev => prev.filter(p => p.id !== id));
+};
+
 
   return (
-    <TaskContext.Provider value={{ tasks, pomodoros, addTask, addPomodoro, editTask, deleteTask }}>
+    <TaskContext.Provider value={{ tasks, pomodoros, addTask, addPomodoro, updatePomodoro, deletePomodoro }}>
+
       {children}
     </TaskContext.Provider>
   );
