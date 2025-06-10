@@ -1,36 +1,27 @@
-// src/app/dashboard/page.js
-'use client';
-import { useContext } from 'react';
-import { TaskContext } from '../../context/TaskContext' // Assuming you're using TaskContext
+"use client"
+import { useTasks } from '../../context/TaskContext';
 
 export default function Dashboard() {
-  const { tasks, pomodoros } = useContext(TaskContext);  // Retrieve tasks and pomodoros
+  const { tasks, pomodoros } = useTasks();
 
   return (
-    <div>
+    <div style={{ padding: "2rem" }}>
       <h1>Dashboard</h1>
-
       <section>
-        <h2>Task Log</h2>
-        <ul>
-          {tasks.map((task) => (
-            <li key={task.id}>
-              {task.content}
-              <small>{task.time}</small>
-            </li>
+        <h2>Tasks</h2>
+        <div className="card-container">
+          {tasks.map(t => (
+            <div className="card" key={t.id}>{t.content}</div>
           ))}
-        </ul>
+        </div>
       </section>
       <section>
-        <h2>Pomodoro Sessions</h2>
-        <ul>
-          {pomodoros.map((session) => (
-            <li key={session.id}>
-              {session.content}
-              <small>{session.time}</small>
-            </li>
+        <h2>Pomodoros</h2>
+        <div className="card-container">
+          {pomodoros.map(p => (
+            <div className="card" key={p.id}>{p.content}</div>
           ))}
-        </ul>
+        </div>
       </section>
     </div>
   );

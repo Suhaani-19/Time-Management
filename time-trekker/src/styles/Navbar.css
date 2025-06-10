@@ -1,49 +1,16 @@
-/* Navbar.css */
-
 .navbar {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #1a3d2d; /* deep green */
-  padding: 10px 20px;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  }
-  
-  .navbar-brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  }
-  
-  .brand-text {
-  font-size: 1.2rem;
-  font-weight: bold;
+  justify-content: space-around;
+  background-color: #66bb6a;
+  padding: 0.8rem;
+}
+
+.navbar a {
   color: black;
-  }
-  
-  .nav-links {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 12px;
-  }
-  
-  .nav-links li {
-  background-color: #2a5a3a;
-  padding: 8px 12px;
-  border-radius: 6px;
-  text-align: center;
-  min-width: 80px;
-  }
-  
-  .nav-links li a {
-  color: white;
+  font-weight: 500;
   text-decoration: none;
-  display: block;
-  }
-  
-  .nav-links li:hover {
-  background-color: #3f7a51;
-  }
-  
-  
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}

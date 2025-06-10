@@ -1,0 +1,19 @@
+.sidebar {
+    width: 60px;
+    background-color: #1b5e20;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0;
+    gap: 1.5rem;
+    color: white;
+  }
+  .sidebar a {
+    font-size: 1.5rem;
+    color: white;
+    text-decoration: none;
+  }
+  .sidebar a:hover {
+    transform: scale(1.2);
+  }
+  
