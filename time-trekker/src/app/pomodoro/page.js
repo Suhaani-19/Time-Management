@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from 'react';
 import { useTasks } from '../../context/TaskContext';
-import '../../styles/Pomodoro.css'; // Make sure this CSS file exists
+import '../../styles/Pomodoro.css';
 
 export default function Pomodoro() {
   const [timeLeft, setTimeLeft] = useState(25 * 60);
@@ -33,7 +33,7 @@ export default function Pomodoro() {
 
   return (
     <div className="pomodoro-container">
-      <h1>Pomodoro Timer</h1>
+      <h1 className="pomodoro-title">Pomodoro Timer</h1>
       <div className="clock">{formatTime(timeLeft)}</div>
       <div className="controls">
         <button onClick={() => setIsRunning(prev => !prev)}>
@@ -47,13 +47,26 @@ export default function Pomodoro() {
         </button>
       </div>
 
-      <h2>Completed Pomodoros</h2>
-      <ul>
+      <section className="pomodoro-info">
+        <h2>What is Pomodoro?</h2>
+        <p>
+          The Pomodoro Technique is a time management method developed by Francesco Cirillo in the late 1980s.
+          It uses a timer to break work into intervals—typically 25 minutes—separated by short breaks.
+          These intervals are known as “Pomodoros.” After completing four Pomodoros, take a longer break.
+          This technique boosts focus, productivity, and mental clarity.
+        </p>
+      </section>
+
+      <h2 className="history-title">Completed Pomodoros</h2>
+      <ul className="pomodoro-list">
         {pomodoros.map((p) => (
           <li key={p.id}>
             {editingId === p.id ? (
               <>
-                <input value={editText} onChange={(e) => setEditText(e.target.value)} />
+                <input
+                  value={editText}
+                  onChange={(e) => setEditText(e.target.value)}
+                />
                 <button onClick={() => {
                   updatePomodoro(p.id, editText);
                   setEditingId(null);

@@ -2,8 +2,7 @@
 import '../styles/globals.css';
 import Navbar from './navbar';
 import Sidebar from './sidebar';
-import LogoBar from './logobar';
-import { TaskProvider } from '../context/TaskContext'; // ✅ Adjust path if needed
+import { TaskProvider } from '../context/TaskContext'; 
 
 export const metadata = {
   title: 'TimeTrekker',
@@ -18,7 +17,6 @@ export default function RootLayout({ children }) {
           <div className="layout-container">
             <Sidebar />
             <div className="main-content">
-              <LogoBar />
               <Navbar />
               <main>{children}</main>
             </div>
