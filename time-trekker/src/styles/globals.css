@@ -1,143 +1,136 @@
-/* globals.css */
-
-*{
+/* Base styles */
+body, html {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  }
-  
-  body {
-  font-family: 'Arial', sans-serif;
-  background-color: #012e20; /* Dark royal green /
-  color: #e0f2f1; / Soft mint text for readability */
-  line-height: 1.6;
-  padding: 20px;
-  }
-  
-  h1, h2, h3 {
-  color: #a5d6a7; /* Light green for headings */
-  }
-  
-  h2 {
-  font-size: 1.8rem;
-  }
-  
-  h3 {
-  font-size: 1.2rem;
-  }
-  
-  small {
-  color: #9eb1aa;
-  font-size: 0.9rem;
-  }
-  
-  button {
+  height: 100%;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #0d0f1a;
+  color: #e2e6f3;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background-color: #0d0f1a;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  z-index: 1000;
+  border-bottom: 1px solid #1f2233;
+}
+
+.navbar .logo {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #e2e6f3;
+  display: flex;
+  align-items: center;
+}
+
+.navbar .logo i {
+  margin-right: 0.5rem;
+}
+
+.navbar .nav-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.navbar .nav-links a {
+  padding: 0.5rem 1rem;
+  background: rgba(0, 132, 255, 0.1);
+  border-radius: 8px;
+  color: #e2e6f3;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.navbar .nav-links a:hover {
+  background: rgba(0, 132, 255, 0.3);
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 60px;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  background-color: #121420;
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-right: 1px solid #1e1f2b;
+}
+
+.sidebar i {
+  font-size: 1.4rem;
+  margin: 1rem 0;
+  color: #a0aec0;
   cursor: pointer;
-  border: none;
-  padding: 10px 15px;
+  transition: color 0.3s ease;
+}
+
+.sidebar i:hover {
+  color: #4fc3f7;
+}
+
+/* Main Content */
+.main {
+  margin-left: 60px;
+  margin-top: 60px;
+  flex: 1;
+  padding: 2rem;
+  background-color: #0d0f1a;
+  min-height: calc(100vh - 60px - 40px); /* minus navbar and footer */
+  color: #f1f5fc;
+}
+
+/* Footer */
+.footer {
+  height: 40px;
+  background-color: #0a1833;
+  color: #9db5d6;
+  text-align: center;
+  line-height: 40px;
+  font-size: 0.85rem;
+  border-top: 1px solid #1c273c;
+  margin-top: auto;
+}
+
+/* Pomodoro Text */
+.pomodoro-title {
+  font-size: 2rem;
+  color: #d8e2f8;
+  margin-bottom: 1rem;
+}
+
+.pomodoro-desc {
   font-size: 1rem;
-  color: #012e20;
-  background-color: #a5d6a7; /* Soft green */
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-  background-color: #81c784; /* Slightly brighter green */
-  }
-  
-  button:disabled {
-  background-color: #4e665b;
-  color: #9e9e9e;
-  cursor: not-allowed;
-  }
-  
-  input,
-  textarea {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border-radius: 5px;
-  border: 1px solid #4e665b;
-  font-size: 1rem;
-  background-color: #1b3b2f; /* Darker green input background */
-  color: #e0f2f1;
-  }
-  
-  input:focus,
-  textarea:focus {
-  border: 1px solid #a5d6a7;
-  outline: none;
-  }
-  
-  form {
-  margin-bottom: 20px;
-  }
-  
-  ul {
-  list-style: none;
-  padding: 0;
-  }
-  
-  li {
-  background-color: #1c3c2c; /* Deep green box */
-  padding: 15px;
-  border-radius: 5px;
-  margin: 10px 0;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  color: #e0f2f1;
-  }
-  
-  li:hover {
-  background-color: #264c3b;
-  }
-  
-  section {
-  margin-bottom: 40px;
-  }
-  
-  textarea {
-  resize: vertical;
-  min-height: 80px;
-  }
-  
-  /* Responsive tweaks */
-  @media (max-width: 768px) {
-  body {
-  padding: 10px;
-  }
-  
-  h1 {
-  font-size: 1.8rem;
-  }
-  
-  h2 {
-  font-size: 1.5rem;
-  }
+  color: #b0bbd9;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar .nav-links {
+    gap: 0.5rem;
+    font-size: 0.9rem;
   }
 
-  .layout-container {
-    display: flex;
-    min-height: 100vh;
-    background-color: #e8f5e9; /* Light green */
-  }
-  
-  .main-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-  .card-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-  
-  .card {
-    background: white;
+  .main {
     padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
-    flex: 1 0 200px;
   }
-  
+}
