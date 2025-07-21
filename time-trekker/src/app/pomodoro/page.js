@@ -19,7 +19,7 @@ export default function Pomodoro() {
       addPomodoro({
         id: Date.now(),
         content: 'Completed Pomodoro session',
-        time: new Date().toLocaleString()
+        time: new Date().toLocaleString(),
       });
     }
     return () => clearInterval(timer);
@@ -49,7 +49,7 @@ export default function Pomodoro() {
 
       <section className="pomodoro-info">
         <h2>What is Pomodoro?</h2>
-        <p>
+        <p className="pomodoro-desc">
           The Pomodoro Technique is a time management method developed by Francesco Cirillo in the late 1980s.
           It uses a timer to break work into intervals—typically 25 minutes—separated by short breaks.
           These intervals are known as “Pomodoros.” After completing four Pomodoros, take a longer break.
@@ -60,7 +60,7 @@ export default function Pomodoro() {
       <h2 className="history-title">Completed Pomodoros</h2>
       <ul className="pomodoro-list">
         {pomodoros.map((p) => (
-          <li key={p.id}>
+          <li className="pomodoro-history-item" key={p.id}>
             {editingId === p.id ? (
               <>
                 <input
