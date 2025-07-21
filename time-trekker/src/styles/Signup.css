@@ -1,0 +1,103 @@
+.signup-container {
+  max-width: 390px;
+  margin: 3rem auto 0 auto;
+  padding: 2.3rem 1.5rem;
+  background: rgba(38,54,130,0.93);
+  border-radius: 21px;
+  box-shadow: 0 0 32px #50aaff33, 0 8px 28px 0 #1a245979;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signup-container h1 {
+  font-size: 2.1rem;
+  margin-bottom: 2rem;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  background: linear-gradient(99deg, #72e6ff 19%, #335fce 64%, #be8cff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: none;
+
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+  align-items: stretch;
+}
+
+.signup-input {
+  width: 100%;
+  min-height: 54px;
+  font-size: 1.13rem;
+  padding: 1em 1.05em;
+  border-radius: 13px;
+  border: 1.5px solid #59b5f870;
+  background: rgba(247,250,255,0.13);
+  color: #f3fdff;
+  box-sizing: border-box;
+  display: block;
+  margin-bottom: 0;
+  caret-color: #47e7ff;
+  font-weight: 500;
+}
+
+.signup-input::placeholder {
+  font-family: inherit;
+  font-size: 1.07em;
+  color: #95b7e4;
+  opacity: 1;
+  font-style: italic;
+  letter-spacing: 0.04em;
+}
+
+.signup-input:focus {
+  border-color: #36e2ff;
+  outline: none;
+  background: rgba(246,255,255,0.18);
+}
+
+.signup-btn {
+  font-size: 1.17rem;
+  padding: 0.9em 0 0.9em 0;
+  border: none;
+  border-radius: 13px;
+  background: linear-gradient(97deg, #105dee 30%, #33f7ff 120%);
+  color: #fff;
+  font-weight: 700;
+  text-shadow: 0 1px 6px #2f8bffb0;
+  letter-spacing: 0.06em;
+  box-shadow: 0 2px 14px #59f6ff7f;
+  margin-top: 0.8em;
+  transition: background 0.18s, transform 0.13s, box-shadow 0.14s;
+  cursor: pointer;
+}
+.signup-btn:hover {
+  background: linear-gradient(93deg, #48caf7 14%, #2c94f3 90%);
+  transform: scale(1.045);
+  box-shadow: 0 4px 18px #4bfaff66;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .signup-container {
+    padding: 1.2rem 0.4rem;
+    max-width: 95vw;
+  }
+  .signup-form {
+    gap: 0.92rem;
+  }
+  .signup-input {
+    font-size: 1rem;
+    min-height: 42px;
+    padding: 0.73em 0.8em;
+  }
+  .signup-btn {
+    font-size: 1.04rem;
+    padding: 0.65em 0 0.65em 0;
+  }
+}

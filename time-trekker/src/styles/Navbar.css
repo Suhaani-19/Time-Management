@@ -1,12 +1,14 @@
 .navbar {
-  background-color: #A1D6A1; /* soft green like previous LogoBar */
+  background-color: #A1D6A1; /* soft green background */
   padding: 1rem 2rem;
-  margin-bottom: 1.5rem; /* prevents overlapping content below */
+  margin-bottom: 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 10;
 }
 
 .navbar-brand {
@@ -15,18 +17,29 @@
   gap: 0.75rem;
 }
 
-.navbar-brand img {
-  width: 60px;
-  height: 60px;
+.navbar-brand img, .navbar-brand .next-image {
+  width: 40px;
+  height: 40px;
+  /* NEON effect for a black logo */
+  filter:
+    invert(1)
+    brightness(1.4)
+    drop-shadow(0 0 7px #fbffff)
+    drop-shadow(0 0 16px #72e6ffcc);
 }
 
-
-.brand-text {
+/* Neon white-glow branding for TimeTrekker */
+.title, .brand-text {
   font-size: 2rem;
   font-weight: bold;
-  color: #000;
-}
+  color: #FBFFFF; /* crisp neon white */
+  letter-spacing: 0.04em;
+  text-shadow:
+  0 0 6px rgb(147, 139, 139),
+  0 0 18px #fbffff,
+  0 0 32px rgba(99, 247, 255, 0.6);
 
+}
 
 .nav-links {
   display: flex;
@@ -35,18 +48,19 @@
   list-style: none;
   margin: 0;
   padding: 0;
+  align-items: center;
 }
 
 .nav-links li a {
   text-decoration: none;
-  color: #fff; /* White text */
+  color: #fff;
   background-color: #153E2A;
   padding: 0.6rem 1rem;
   border-radius: 0.5rem;
   font-weight: 500;
   font-size: 1rem;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .nav-links li a:hover {
@@ -54,20 +68,85 @@
   color: #c1ffda;
 }
 
-/* Responsive */
+/* ------ USER INDICATOR CSS ------ */
+.user-indicator {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(119deg, #41d6ff88, #7264ffe0);
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.28em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 9px #60f8ff48;
+  cursor: pointer;
+  margin-left: 1.5em;
+  margin-right: 0.4em;
+  transition: box-shadow 0.14s;
+  user-select: none;
+}
+.user-indicator:hover {
+  box-shadow: 0 2px 18px #5dcfff90;
+}
+.online-dot {
+  position: absolute;
+  right: 4px;
+  bottom: 3px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #28ed74;
+  border: 2px solid #2c6b41;
+  box-shadow: 0 0 4px #24ff7277;
+}
+.logout-btn {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  border: none;
+  background: #194080d4;
+  color: #fff;
+  border-radius: 7px;
+  width: 19px;
+  height: 19px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1rem;
+  opacity: 0.7;
+  transition: background 0.18s, opacity 0.1s;
+  z-index: 1;
+  display: none;
+}
+.user-indicator:hover .logout-btn {
+  display: block;
+  opacity: 1;
+}
+
+/* Responsive styles */
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;
     align-items: flex-start;
+    padding: 0.7rem 1rem 1rem 1rem;
   }
-
+  .navbar-brand {
+    margin-bottom: 0.4rem;
+  }
   .nav-links {
     flex-direction: column;
     gap: 1rem;
     margin-top: 1rem;
+    width: 100%;
   }
-
-  .brand-text {
-    font-size: 1.3rem;
+  .user-indicator {
+    margin-left: 0;
+    margin-top: 1.2em;
+    align-self: flex-end;
+  }
+  .title, .brand-text {
+    font-size: 1.35rem;
   }
 }

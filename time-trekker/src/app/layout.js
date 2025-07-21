@@ -2,6 +2,7 @@ import '../styles/globals.css';
 import Navbar from './navbar';
 import Sidebar from './sidebar';
 import Footer from './footer'; // ✅ Import the Footer component
+
 import { TaskProvider } from '../context/TaskContext';
 
 export const metadata = {

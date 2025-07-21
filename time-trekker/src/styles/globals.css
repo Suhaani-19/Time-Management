@@ -392,3 +392,37 @@ h4 { font-size: 1.05rem; }
 
 /* UTILITY */
 .text-center { text-align: center; }
+
+
+/* FORCE IDENTICAL HEIGHT FOR TASK INPUT AND TEXTAREA (Form + Card) */
+.task-log-input,
+.task-log-desc,
+.task-log-card input,
+.task-log-card textarea {
+  width: 100%;
+  height: 58px !important;         /* FIX: force both to be exactly the same height */
+  min-height: 58px !important;
+  max-height: 140px;
+  font-size: 1.15rem;
+  padding: 1em 1.1em;
+  border-radius: 11px;
+  border: 1.5px solid #70cfff54;
+  background: rgba(255,255,255,0.10);
+  color: #233357;
+  box-sizing: border-box;
+  margin-bottom: 0;
+  resize: none !important;         /* Don't let textarea be manually resized */
+  display: block;
+  outline: none;
+  vertical-align: middle;
+}
+
+/* FOCUS state remains stylish */
+.task-log-input:focus,
+.task-log-desc:focus,
+.task-log-card input:focus,
+.task-log-card textarea:focus {
+  border-color: #44e6ff;
+  outline: none;
+  background: rgba(255,255,255,0.17);
+}
