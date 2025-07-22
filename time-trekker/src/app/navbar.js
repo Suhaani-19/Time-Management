@@ -4,12 +4,11 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import UserIndicator from "./UserIndicator";
-import "../styles/Navbar.css"; // Same file as before
+import "../styles/Navbar.css";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Hide menu on navigation
   const hideMenu = () => setMenuOpen(false);
 
   return (
@@ -20,9 +19,9 @@ export default function Navbar() {
           alt="TimeTrekker Logo"
           width={40}
           height={40}
-          className="navbar-logo"
+          className="navbar-logo logo-glass" // <-- ADD logo-glass HERE
         />
-        <span className="title">TimeTrekker</span>
+        <span className="title neon-glass">TimeTrekker</span>
       </div>
 
       {/* Hamburger menu button (visible only on mobile) */}

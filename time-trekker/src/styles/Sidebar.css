@@ -12,8 +12,12 @@
     font-size: 1.5rem;
     color: white;
     text-decoration: none;
-  }
+  }X
   .sidebar a:hover {
     transform: scale(1.2);
   }
-  
+  @media (max-width: 900px) {
+  .sidebar {
+    display: none !important;
+  }
+}
