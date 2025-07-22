@@ -1,0 +1,76 @@
+/* Dashboard - Card Containers */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: flex-start;
+  margin: 1.5rem 0;
+}
+
+/* Dashboard Cards (reuse global .card styles for glass look) */
+.card {
+  background: rgba(32, 54, 112, 0.80);
+  border: 1.7px solid #70cfff25;
+  border-radius: 21px;
+  padding: 2em 2.3em;
+  box-shadow: 0 0 40px #5edbff25, 0 8px 32px 0 #3956b03a;
+  backdrop-filter: blur(22px) saturate(172%);
+  width: 100%;
+  max-width: 320px;
+  min-width: 230px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #e2edff;
+  transition: box-shadow 0.17s, border 0.17s;
+}
+
+.card:hover {
+  box-shadow: 0 0 60px #5edbffb2, 0 0 30px #1a48e744;
+  border-color: #5edbff63;
+}
+
+.card * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Dashboard Headings */
+.dashboard-page h1, .dashboard-page h2 {
+  background: linear-gradient(90deg, #befaff 14%, #3ea9ff 54%, #bfa8ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #1841a3;
+  text-shadow: 0 2px 8px #54f7ff64, 0 0 2px #1b80ff27;
+  letter-spacing: 0.048em;
+  font-weight: 800;
+  margin-bottom: 0.7rem;
+}
+.dashboard-page h1 { font-size: 2.1rem; }
+.dashboard-page h2 { font-size: 1.28rem; }
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .card-container { gap: 1.2rem; }
+  .card { min-width: 170px; max-width: 99%; padding: 1.4em 1em; }
+}
+
+@media (max-width: 600px) {
+  .card-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  .card { min-width: 0; width: 100%; max-width: 99vw; }
+  .dashboard-page h1 { font-size: 1.2rem; }
+  .dashboard-page h2 { font-size: 1.02rem; }
+}
+
+/* Ensure .dashboard-page main wrap */
+.dashboard-page {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2em 1em;
+}

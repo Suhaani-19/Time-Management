@@ -1,41 +1,51 @@
+// app/Navbar.js or app/navbar.js
 "use client";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import "../styles/Navbar.css";
-import UserIndicator from "./UserIndicator"; // Import the indicator
-import React, { useEffect, useState } from "react";
-import { auth } from "../firebase";
-import { onAuthStateChanged } from "firebase/auth";
+import UserIndicator from "./UserIndicator";
+import "../styles/Navbar.css"; // Same file as before
 
 export default function Navbar() {
-  // Track user for hiding login/signup links when logged in
-  const [user, setUser] = useState(null);
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  useEffect(() => {
-    const unsub = onAuthStateChanged(auth, setUser);
-    return () => unsub();
-  }, []);
+  // Hide menu on navigation
+  const hideMenu = () => setMenuOpen(false);
 
   return (
     <div className="navbar">
       <div className="navbar-brand">
-        <Image src="/logo.png" alt="TimeTrekker Logo" width={40} height={40} />
+        <Image
+          src="/logo.png"
+          alt="TimeTrekker Logo"
+          width={40}
+          height={40}
+          className="navbar-logo"
+        />
         <span className="title">TimeTrekker</span>
       </div>
-      <ul className="nav-links">
-        <li><Link href="/">Home</Link></li>
-        <li><Link href="/dashboard">Dashboard</Link></li>
-        <li><Link href="/tasklog">Task Log</Link></li>
-        <li><Link href="/pomodoro">Pomodoro</Link></li>
-        <li><Link href="/about">About</Link></li>
-        <li><Link href="/help">Help</Link></li>
-        {/* Show Login/Signup ONLY when not logged in */}
-        {!user && (
-          <>
-            <li><Link href="/login">Login</Link></li>
-            <li><Link href="/signup">Signup</Link></li>
-          </>
-        )}
+
+      {/* Hamburger menu button (visible only on mobile) */}
+      <button
+        className={`hamburger ${menuOpen ? "open" : ""}`}
+        aria-label="Toggle navigation menu"
+        onClick={() => setMenuOpen((v) => !v)}
+      >
+        <span />
+        <span />
+        <span />
+      </button>
+
+      {/* Nav links */}
+      <ul className={`nav-links ${menuOpen ? "nav-active" : ""}`}>
+        <li onClick={hideMenu}><Link href="/">Home</Link></li>
+        <li onClick={hideMenu}><Link href="/dashboard">Dashboard</Link></li>
+        <li onClick={hideMenu}><Link href="/tasklog">Task Log</Link></li>
+        <li onClick={hideMenu}><Link href="/pomodoro">Pomodoro</Link></li>
+        <li onClick={hideMenu}><Link href="/about">About</Link></li>
+        <li onClick={hideMenu}><Link href="/help">Help</Link></li>
+        <li onClick={hideMenu}><Link href="/login">Login</Link></li>
+        <li onClick={hideMenu}><Link href="/signup">Signup</Link></li>
       </ul>
       <UserIndicator />
     </div>
