@@ -16,10 +16,10 @@ export default function Signup() {
     setError("");
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      // Optionally set user's display name:
       await updateProfile(userCredential.user, { displayName: name });
       alert("Signup Successful! You can now log in.");
-      // Optionally redirect here
+      // Optionally redirect to login:
+      // router.push("/login");
     } catch (err) {
       setError(err.message);
     }
@@ -30,9 +30,30 @@ export default function Signup() {
       <div className="signup-container">
         <h1>Signup</h1>
         <form className="signup-form" onSubmit={handleSignup}>
-          <input className="signup-input" type="text" placeholder="Name" value={name} onChange={e => setName(e.target.value)} required />
-          <input className="signup-input" type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} required />
-          <input className="signup-input" type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} required />
+          <input
+            className="signup-input"
+            type="text"
+            placeholder="Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+          <input
+            className="signup-input"
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            className="signup-input"
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
           <button className="signup-btn" type="submit">Create Account</button>
           {error && <div style={{ color: "salmon", marginTop: 8 }}>{error}</div>}
         </form>

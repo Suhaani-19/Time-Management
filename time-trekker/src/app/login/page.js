@@ -16,7 +16,8 @@ export default function Login() {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       alert("Login Successful!");
-      // Optionally redirect here
+      // Redirect to dashboard or home if needed
+      // e.g., router.push("/dashboard");
     } catch (err) {
       setError("Invalid email or password");
     }
@@ -27,8 +28,22 @@ export default function Login() {
       <div className="login-container">
         <h1>Login</h1>
         <form className="login-form" onSubmit={handleLogin}>
-          <input className="login-input" type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} required />
-          <input className="login-input" type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} required />
+          <input
+            className="login-input"
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            className="login-input"
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
           <button className="login-btn" type="submit">Login</button>
           {error && <div style={{ color: "salmon", marginTop: 8 }}>{error}</div>}
         </form>
