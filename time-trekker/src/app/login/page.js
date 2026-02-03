@@ -6,18 +6,19 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import '../../styles/Login.css';
 
 export default function Login() {
+  // State to store user input and error messages
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
+  // Handles login form submission and Firebase authentication
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
     try {
       await signInWithEmailAndPassword(auth, email, password);
       alert("Login Successful!");
-      // Redirect to dashboard or home if needed
-      // e.g., router.push("/dashboard");
+      // Redirect user after successful login (optional)
     } catch (err) {
       setError("Invalid email or password");
     }
