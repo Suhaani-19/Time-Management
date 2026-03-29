@@ -4,6 +4,7 @@ import '../styles/Sidebar.css';
 // code
 export default function Sidebar() {
   return (
+    
     <div className="sidebar">
       <Link href="/">🏠</Link>
       <Link href="/dashboard">📊</Link>
