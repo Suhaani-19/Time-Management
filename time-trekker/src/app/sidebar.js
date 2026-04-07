@@ -1,7 +1,7 @@
 "use client"
 import Link from 'next/link';
 import '../styles/Sidebar.css';
-// code
+
 
 export default function Sidebar() {
   return (
